@@ -3,14 +3,14 @@ fun dighe(s: Roba?) {
 }
 
 fun siga(s: Roba?) {
-	dighe(s.toString().toUpperCase())
+	dighe(s.toString().uppercase())
 }
 
 fun ohMadonna(s: Roba?) {
 	System.err.println(s)
 }
 fun Mariaaa(s: Roba?) {
-	System.err.println(s.toString().toUpperCase())
+	System.err.println(s.toString().uppercase())
 }
 
 fun PONTE_SULLO_STRETTO(): Nothing = TODO()
