@@ -133,16 +133,16 @@ Instance check (i.e. `Kotlin`'s `is`), can be performed with the `lÈUn<T>()` fu
 **Katrekka** provides constants for the first 20 (`vint`) numbers.
 For example:
 ```
-ingannoDellaCadrega(vün + dü lÈUn trì) // Asserts that 1 + 2 == 3
+ingannoDellaCadrega(vün + dü lÈ trì) // Asserts that 1 + 2 == 3
 ```
 
 #### La Bella La Và Al Fosso
-**Katrekka** provides the lines of the "La Bella La Và Al Fosso" in the `laBellaLaVàAlFosso` variable. If you need them to repeat indefinitely (for example, to generate a Lorem Ipsum text), you can use the included infinite sequence `laBellaLaVàSempreAlFosso`.
+**Katrekka** provides the lines of the "La Bella La Và Al Fosso" in the `laBellaLaVàAlFosso` constant. If you need them to repeat indefinitely (for example, to generate a Lorem Ipsum text), you can use the included infinite sequence `laBellaLaVàSempreAlFosso`.
 
 For example, to keep singing until `transilvaniaLiberaDaiMeridionali()`, you can use:
 ```
 laBellaLaVàSempreAlFosso
-    .takeWhile { !transilvaniaLiberaDaiMeridionali() }
+    .takeUntil { transilvaniaLiberaDaiMeridionali() }
     .forEach { siga(it) }
 ```
 
