@@ -2,12 +2,16 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.5.0'
 }
 
-group 'org.katrekka'
-version '1.0-SNAPSHOT'
+group 'io.github.mmarco94'
+archivesBaseName = "kadrekka"
+version '0.1-alpha'
 
 repositories {
     mavenCentral()
 }
+
+apply plugin: 'maven'
+apply plugin: 'signing'
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
@@ -16,4 +20,67 @@ dependencies {
 
 test {
     useJUnit()
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://s01.oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'Kadrekka'
+                packaging 'jar'
+                // optionally artifactId can be defined here
+                description 'Kadrekka is a library that aims to make Kotlin more accessible to the northern italian population.'
+                url 'https://github.com/MMarco94/Kadrekka'
+
+                scm {
+                    url 'https://github.com/MMarco94/Kadrekka'
+                    connection 'scm:https://MMarco94@github.com/MMarco94/Kadrekka.git'
+                    developerConnection 'scm:git://github.com/MMarco94/Kadrekka.git'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'MMarco94'
+                        name 'Marco Marangoni'
+                        email 'marco.marangoni1@gmail.com.com'
+                    }
+                }
+            }
+        }
+    }
 }

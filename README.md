@@ -146,9 +146,17 @@ laBellaLaVàSempreAlFosso
     .forEach { siga(it) }
 ```
 
+## Install
+### Gradle
+```
+dependencies {
+    // Your other dependencies
+    implementation 'io.github.mmarco94:kadrekka:0.1-alpha'
+}
+```
 
-### Examples
-#### Recursive binary search
+## Examples
+### Recursive binary search
 Kotlin (taken from [Rosetta code](http://www.rosettacode.org/wiki/Binary_search#Kotlin)):
 ```
 fun <T : Comparable<T>> Array<T>.binarySearch(target: T, lo: Int, hi: Int): Int {
@@ -181,7 +189,7 @@ fun <T : Comparable<T>> Array<T>.trova(cosa: T, daChì: Intero, aLà: Intero): I
 ```
 Now, that's better. 
 
-#### Iterative binary search
+### Iterative binary search
 Kotlin:
 ```
 fun <T : Comparable<T>> Array<T>.iterativeBinarySearch(target: T): Int {
