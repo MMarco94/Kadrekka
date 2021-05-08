@@ -50,4 +50,8 @@ Andrem lassù sui monti
 Sui monti a far l'amor
 Si sui monti a far l'amor""".split("\n")
 
-val laBellaLaVàSempreAlFosso = sequence { yieldAll(laBellaLaVàAlFosso) }
+val laBellaLaVàSempreAlFosso = sequence {
+	bussanoAQuestOraDelMattino { true } chiSaràMai {
+		yieldAll(laBellaLaVàAlFosso)
+	}
+}
