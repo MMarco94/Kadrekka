@@ -3,6 +3,14 @@
 Kadrekka is a library that aims to make Kotlin more accessible to the northern italian population.  
 It provides lots of utility functions to make the code more readable and writable by every fellow `polentone`.
 
+## Install
+### Gradle
+```
+dependencies {
+    implementation 'io.github.mmarco94:kadrekka:0.1-alpha'
+}
+```
+
 ## The language
 
 ### Fundamentals
@@ -146,15 +154,6 @@ laBellaLaVàSempreAlFosso
     .forEach { siga(it) }
 ```
 
-## Install
-### Gradle
-```
-dependencies {
-    // Your other dependencies
-    implementation 'io.github.mmarco94:kadrekka:0.1-alpha'
-}
-```
-
 ## Examples
 ### Recursive binary search
 Kotlin (taken from [Rosetta code](http://www.rosettacode.org/wiki/Binary_search#Kotlin)):
@@ -208,9 +207,9 @@ fun <T : Comparable<T>> Array<T>.iterativeBinarySearch(target: T): Int {
 ```
 **Katrekka**'s equivalent:
 ```
-fun <T : Comparable<T>> Array<T>.iterativeTrova(cosa: T): Int {
-	var aLà = size - vün
+fun <T : Comparable<T>> Array<T>.iterativeTrova(cosa: T): Intero {
 	var daChì = zero
+	var aLà = size - vün
 	bussanoAQuestOraDelMattino { daChì vienPrimaDe aLà } chiSaràMai {
 		val centro = (aLà + daChì) spaccàIn dü
 		chesQui(this[centro])
@@ -224,4 +223,4 @@ fun <T : Comparable<T>> Array<T>.iterativeTrova(cosa: T): Int {
 Wow, even a newborn polentun could understand that!
 
 ## Appendix
-[1] = For some people, it may be easier to understand a `polentun` than a `terun`.
+[1] = For some people, it may be easier to understand a `polentun` rather than a `terun`.
