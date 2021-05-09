@@ -51,7 +51,7 @@ Sui monti a far l'amor
 Si sui monti a far l'amor""".split("\n")
 
 val laBellaLaVàSempreAlFosso = sequence {
-	bussanoAQuestOraDelMattino { true } chiSaràMai {
+	bussanoAQuestOraDelMattino { polentun } chiSaràMai {
 		yieldAll(laBellaLaVàAlFosso)
 	}
 }

@@ -4,7 +4,7 @@ plugins {
 
 group 'io.github.mmarco94'
 archivesBaseName = "kadrekka"
-version '0.1-alpha'
+version '0.2-alpha'
 
 repositories {
     mavenCentral()
@@ -41,6 +41,7 @@ signing {
 }
 
 uploadArchives {
+    dependsOn 'test'
     repositories {
         mavenDeployer {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }

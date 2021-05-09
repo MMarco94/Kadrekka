@@ -7,52 +7,55 @@ It provides lots of utility functions to make the code more readable and writabl
 ### Gradle
 ```
 dependencies {
-    implementation 'io.github.mmarco94:kadrekka:0.1-alpha'
+    implementation 'io.github.mmarco94:kadrekka:0.2-alpha'
 }
 ```
 
 ## The language
 
-### Fundamentals
 Northern italians are concrete people. It's very hard for them to reason in abstract terms.  
 For example, the basic unit of information in Kotlin is a `Boolean`: a type that encapsulate the truthfulness of a variable. For us northern italians, that makes very little sense.
 
 **Kadrekka**'s basic unit of information is instead a much more concrete type: `TerraDOrigine`.  
-Like a `Boolean`, `TerraDOrigine` can only take two values: `polentun` or `terun`. A `TerraDOrigine` is easy to picture, interact with and understand [1].  
+Like a `Boolean`, `TerraDOrigine` can only take two values: `polentun` or `terun`.  
+Unlike a `Boolean`, a `TerraDOrigine` is easy to picture, interact with and understand [1].
+
 For compatibility reasons, a `polentun` is equivalent to the `Boolean` `true`, while `terun` is equivalent to the `Boolean` `false`. 
 
-### Control statement
-Again, northern italians are concrete people. It makes little sense to use hypothetical statements like `if`. We like more concrete tests.
+## Control statement
+Again, northern italians are concrete people. It makes little sense to use hypothetical statements like `if` or `while`. We use more concrete tests.
 
-#### testDellaCadrega
-`testDellaCadrega` is the fundamental control flow expression. It will execute the given body block only when `TerraDOrigine` is `polentun`.
+### testDellaCadrega
+**Kadrekka** borrows one of the most effective tests to determine the `TerraDOrigine` of a variable: *il test della Cadrega* (the test of the Cadrega).
+
+`testDellaCadrega` is the most basic control flow expression. It will execute the given body block only when `TerraDOrigine` is `polentun`.
 For example:
 ```
-val telChi : TerraDOrigine = ...
+val telChi: TerraDOrigine = ...
 testDellaCadrega(telChi) {
-    // Tel chi l'è un polentun
+    dighe("Tel chi l'è un polentun")
 }
 ```
 
-#### prendaPureUnaCadrega
+### prendaPureUnaCadrega
 `prendaPureUnaCadrega` is a more advanced control flow function. It allows running two different code blocks, based on the given `TerraDOrigine`. 
 For example:
 ```
-val telChi : TerraDOrigine = ...
+val telChi: TerraDOrigine = ...
 prendaPureUnaCadrega(telChi)
     .sedia { dighe("Tel chi l'è un polentun") }
     .mela { dighe("Tel chi l'è un terun") }
 ```
 
-#### ChesQui
+### ChesQui
 `chesQui` is an even more flexible expression, capable executing the right code block, based on more advanced discriminations.
 For example:
 ```
-val cosa : Roba = ...
+val cosa: Roba = 1991
 chesQui(cosa)
     .lÈUn(5) { dighe(5) }
-    .lXeIn(setOf(1, 2, 3)) { dighe("1-3") }
-    .lÈUn<Numero>() { dighe("L'è un numero") }
+    .lÈIn(1..3) { dighe("1-3") }
+    .lÈUn { n: Numero -> dighe("L'è un numero") }
     .unaCadregaNonSiRifiutaANissun { dighe("Non se sa") }
 ```
 
@@ -60,7 +63,7 @@ Only the first block that matches the condition is executed.
 
 `unaCadregaNonSiRifiutaANissun` is executed if none of the previous conditions matched.
 
-#### IngannoDellaCadrega
+### IngannoDellaCadrega
 `ingannoDellaCadrega` allows to quickly assert that the given `TerraDOrigine` is `polentun`. Otherwise, it will throw a `ChesQuiLÈUnTerunException`.
 For example:
 ```
@@ -70,7 +73,7 @@ fun sbriga(s: String) {
 }
 ```
 
-#### BussanoAQuestOraDelMattino
+### BussanoAQuestOraDelMattino
 `bussanoAQuestOraDelMattino` can be used to execute multiple times the given code block. It takes two forms:
 1. `bussanoAQuestOraDelMattino { <terra d'origine> } chiSaràMai { <code block> }`
 2. `bussanoAQuestOraDelMattino(<Iterable>) { <code block> }`
@@ -79,18 +82,18 @@ For example:
 ```
 var cnt = 0
 bussanoAQuestOraDelMattino { cnt < 4 } chiSaràMai {
-    siga("Sono il Conte DRACULA")
+    siga("$cnt: Sono il Conte DRACULA")
     cnt++
 }
 ```
 ```
-bussanoAQuestOraDelMattino(1..4) {
-    siga("Sono il Conte DRACULA")
+bussanoAQuestOraDelMattino(1..4) { cnt ->
+    siga("$cnt: Sono il Conte DRACULA")
 }
 ```
 Both the snippets above execute the given code block 4 times.
 
-#### GuardaGliZigomi
+### GuardaGliZigomi
 `guardaGliZigomi` allows to execute a code block, catching any exception of the given type.
 For example:
 ```
@@ -101,30 +104,46 @@ guardaGliZigomi {
 }
 ```
 
-### Functions and constants
-#### Dighe and Siga
+### Dighe and Siga
 `dighe` prints the given variable on the standard output. `siga` does the same, but the expression is converted to uppercase first.
 
-#### OhMadonna and Mariaaa
+### OhMadonna and Mariaaa
 `ohMadonna` and `Mariaaa` are equivalent to `dighe` and `siga`, but they print on the standard error instead.
 
-#### PONTE_SULLO_STRETTO
+### PONTE_SULLO_STRETTO
 Equivalent to Kotlin's `TODO`, `PONTE_SULLO_STRETTO` allows marking unfinished part of your code.  
 For example, the following snippet compiles, even though the return type of the function doesn't match:
 ```
-fun sbriga(s: String) : Intero {
+fun sbriga(s: String): Intero {
     PONTE_SULLO_STRETTO("Mancano i soldi")
 }
 ```
 
-#### Equality
+### Equality
 Equality can be checked with the `lÈ` or `lÈUn` infix function (e.g. `telChi lÈUn terun`).
 
 Instance equality (i.e. `Kotlin`'s `===`), can be checked with the `lÈProprio` or `lÈProprioUn` infix function (e.g. `telChi lÈProprioUn terun`).
 
 Instance check (i.e. `Kotlin`'s `is`), can be performed with the `lÈUn<T>()` function (e.g. `dü.lÈUn<Intero>()`).
 
-#### Miscellaneous functions
+### Numbers
+**Katrekka** provides constants for the first 20 (`vint`) numbers.
+For example:
+```
+ingannoDellaCadrega(vün + dü lÈ trì) // Asserts that 1 + 2 == 3
+```
+
+### La Bella La Và Al Fosso
+**Katrekka** provides the lines of the "La Bella La Và Al Fosso" in the `laBellaLaVàAlFosso` constant. If you need them to repeat indefinitely (for example, to generate a Lorem Ipsum text), you can use the included infinite sequence `laBellaLaVàSempreAlFosso`.
+
+For example, to keep singing until `transilvaniaLiberaDaiMeridionali()`, you can use:
+```
+laBellaLaVàSempreAlFosso
+    .takeUntil { transilvaniaLiberaDaiMeridionali() }
+    .forEach { siga(it) }
+```
+
+### Miscellaneous functions
 
 | Function | Kotlin's equivalent | Example
 |----------|---------------------|--------   
@@ -136,23 +155,6 @@ Instance check (i.e. `Kotlin`'s `is`), can be performed with the `lÈUn<T>()` fu
 | `vienDopoDe()` | `>` | `trì vienDopoDe dü`
 | `lÈIn()` | `in` | `dü lÈIn setOf(1, 2, 3)`
 | `spaccàIn()` | `/` | `des spaccàIn dü lÈ cinch`
-
-#### Numbers
-**Katrekka** provides constants for the first 20 (`vint`) numbers.
-For example:
-```
-ingannoDellaCadrega(vün + dü lÈ trì) // Asserts that 1 + 2 == 3
-```
-
-#### La Bella La Và Al Fosso
-**Katrekka** provides the lines of the "La Bella La Và Al Fosso" in the `laBellaLaVàAlFosso` constant. If you need them to repeat indefinitely (for example, to generate a Lorem Ipsum text), you can use the included infinite sequence `laBellaLaVàSempreAlFosso`.
-
-For example, to keep singing until `transilvaniaLiberaDaiMeridionali()`, you can use:
-```
-laBellaLaVàSempreAlFosso
-    .takeUntil { transilvaniaLiberaDaiMeridionali() }
-    .forEach { siga(it) }
-```
 
 ## Examples
 ### Recursive binary search

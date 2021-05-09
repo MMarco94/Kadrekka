@@ -22,6 +22,10 @@ class ChesQui<T, in R>(val telChi: T) {
 
 	inline fun <RR : R> lÈIn(combricola: Combricola<T>, f: (T) -> RR) = aggiudicatore({ telChi lÈIn combricola }, f)
 
+	inline fun <reified C : Comparable<C>, RR : R> lÈIn(combricola: ClosedRange<C>, f: (C) -> RR): ChesQui<T, RR> {
+		return aggiudicatore({  telChi is C && telChi lÈIn combricola }, f)
+	}
+
 	inline fun <RR : R> lÈUnNissun(f: () -> RR) = aggiudicatore<RR, T>({ telChi lÈUn nissun }) { f() }
 
 	inline fun <RR : R> unaCadregaNonSiRifiutaANissun(f: (T) -> RR): RR {
@@ -29,10 +33,6 @@ class ChesQui<T, in R>(val telChi: T) {
 		ingannoDellaCadrega(run)
 		return ret as RR
 	}
-}
-
-inline fun <C : Comparable<C>, R, RR : R> ChesQui<C, R>.lÈIn(combricola: ClosedRange<C>, f: (C) -> RR): ChesQui<C, RR> {
-	return aggiudicatore({ telChi lÈIn combricola }, f)
 }
 
 inline fun <C : Comparable<C>, R, RR : R> ChesQui<C, R>.lÈPejoDe(quelLà: C, f: (C) -> RR): ChesQui<C, RR> {

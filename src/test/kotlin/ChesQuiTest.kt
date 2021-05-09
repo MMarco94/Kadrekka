@@ -19,5 +19,14 @@ internal class ChesQuiTest {
 			.lÈUnPolentun { 'A' }
 			.unaCadregaNonSiRifiutaANissun { 'B' }
 		ingannoDellaCadrega(t3 lÈ 'A')
+
+		val cosa: Roba = 1991
+		val t4 = chesQui(cosa)
+			.lÈUn(5) { 'A' }
+			.lÈIn(1..3) { 'B' }
+			.lÈUn { n: Numero -> 'C' }
+			.unaCadregaNonSiRifiutaANissun { 'D' }
+		ingannoDellaCadrega(t4 lÈ 'C')
+
 	}
 }
